@@ -1,0 +1,87 @@
+header {
+  background-color: #363636;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+/* table */
+thead th,
+tfoot th {
+  font-family: 'Tahoma', cursive;
+  padding: 12px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+  width: 60%;
+}
+
+thead {
+  background-color: #333;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2%;
+  padding: 12px;
+}
+
+td {
+  letter-spacing: 1px;
+  padding: 8px;
+}
+
+tbody td {
+  text-align: left;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+/* zebra striping */
+
+tbody tr:nth-child(odd) {
+  background-color: #a6ebe4;
+}
+
+tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  width: 20em;
+  min-width: 8em;
+}
+
+tbody tr:hover {
+  background-color: rgb(119, 146, 233) !important;
+}
+
+/* filtros aplicados */
+
+.filters {
+  padding: 8px;
+  border: 1px solid rgb(99, 198, 165);
+  background-color: rgb(156, 252, 220);
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: flex;
+  width: 40%;
+  align-items: center;
+}
+
+.filters button {
+  padding: 0;
+  margin: 0 4px 0 0;
+  width: 20px;
+  height: 20px;
+}
+
+.filters button:hover {
+  color: rgb(210, 80, 80);
+  cursor: pointer;
+}
