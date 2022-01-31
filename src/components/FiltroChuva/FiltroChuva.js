@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import './style.css';
 const DATA = [
@@ -39,10 +39,10 @@ const DATA = [
   },
   {
     CAPITAL: 'CAMPO GRANDE',
-    TMIN18: '24.7*',
-    TMAX18: '28.1*',
-    UMIN18: '78*',
-    PMAX12: '2.8*',
+    TMIN18: '24.7',
+    TMAX18: '28.1',
+    UMIN18: '78',
+    PMAX12: '2.8',
   },
   {
     CAPITAL: 'CUIABA',
@@ -60,30 +60,30 @@ const DATA = [
   },
   {
     CAPITAL: 'FLORIANOPOLIS',
-    TMIN18: '20.8*',
-    TMAX18: '26.8*',
-    UMIN18: '56*',
-    PMAX12: '.6*',
+    TMIN18: '20.8',
+    TMAX18: '26.8',
+    UMIN18: '56',
+    PMAX12: '.6',
   },
   {
     CAPITAL: 'FORTALEZA',
-    TMIN18: '23.6*',
-    TMAX18: '31.7*',
-    UMIN18: '54*',
-    PMAX12: '.4*',
+    TMIN18: '23.6',
+    TMAX18: '31.7',
+    UMIN18: '54',
+    PMAX12: '.4',
   },
   {
     CAPITAL: 'GOIANIA',
-    TMIN18: '20.1*',
-    TMAX18: '30.3*',
-    UMIN18: '47*',
+    TMIN18: '20.1',
+    TMAX18: '30.3',
+    UMIN18: '47',
     PMAX12: '2',
   },
   {
     CAPITAL: 'JOAO PESSOA',
-    TMIN18: '23.7*',
-    TMAX18: '32.3*',
-    UMIN18: '58*',
+    TMIN18: '23.7',
+    TMAX18: '32.3',
+    UMIN18: '58',
     PMAX12: '1.4',
   },
   {
@@ -95,17 +95,17 @@ const DATA = [
   },
   {
     CAPITAL: 'MACEIÓ',
-    TMIN18: '23.5*',
-    TMAX18: '31.8*',
+    TMIN18: '23.5',
+    TMAX18: '31.8',
     UMIN18: '*',
     PMAX12: '*',
   },
   {
     CAPITAL: 'MANAUS',
-    TMIN18: '23.7*',
-    TMAX18: '28.9*',
-    UMIN18: '71*',
-    PMAX12: '29.2*',
+    TMIN18: '23.7',
+    TMAX18: '28.9',
+    UMIN18: '71',
+    PMAX12: '29.2',
   },
   {
     CAPITAL: 'NATAL',
@@ -130,10 +130,10 @@ const DATA = [
   },
   {
     CAPITAL: 'PORTO VELHO',
-    TMIN18: '23.9*',
-    TMAX18: '29.1*',
-    UMIN18: '66*',
-    PMAX12: '4.4*',
+    TMIN18: '23.9',
+    TMAX18: '29.1',
+    UMIN18: '66',
+    PMAX12: '4.4',
   },
   {
     CAPITAL: 'RECIFE',
@@ -151,10 +151,10 @@ const DATA = [
   },
   {
     CAPITAL: 'RIO DE JANEIRO',
-    TMIN18: '22.7*',
-    TMAX18: '30.4*',
-    UMIN18: '58*',
-    PMAX12: '19.4*',
+    TMIN18: '22.7',
+    TMAX18: '30.4',
+    UMIN18: '58',
+    PMAX12: '19.4',
   },
   {
     CAPITAL: 'SALVADOR',
@@ -165,49 +165,58 @@ const DATA = [
   },
   {
     CAPITAL: 'SAO LUIS',
-    TMIN18: '22.7*',
-    TMAX18: '30.5*',
-    UMIN18: '60*',
-    PMAX12: '*',
+    TMIN18: '22.7',
+    TMAX18: '30.5',
+    UMIN18: '60',
+    PMAX12: '',
   },
   {
     CAPITAL: 'SAO PAULO',
-    TMIN18: '18.1*',
-    TMAX18: '23.5*',
-    UMIN18: '68*',
-    PMAX12: '66.4*',
+    TMIN18: '18.1',
+    TMAX18: '23.5',
+    UMIN18: '68',
+    PMAX12: '66.4',
   },
   {
     CAPITAL: 'TERESINA',
-    TMIN18: '*',
-    TMAX18: '*',
-    UMIN18: '*',
-    PMAX12: '*',
+    TMIN18: '',
+    TMAX18: '',
+    UMIN18: '',
+    PMAX12: '',
   },
   {
     CAPITAL: 'VITORIA',
-    TMIN18: '22.9*',
-    TMAX18: '34*',
-    UMIN18: '52*',
-    PMAX12: '0*',
+    TMIN18: '22.9',
+    TMAX18: '34',
+    UMIN18: '52',
+    PMAX12: '0',
   },
 ];
 
 function FiltroChuva() {
-  // array com os filtros
+  // estado generico para os inputs
+  const [selected, setSelected] = useState({
+    column: '',
+    condition: '',
+    value: '',
+  });
+
+  // estado para o array de filtros
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  const [selected, setSelected] = useState({});
+  useEffect(() => {
+    console.log('FILTRO SELECIONADO: ', selectedFilters);
+  }, [selectedFilters]);
 
   const tratarDados = (linha) => {
     const bools = [];
     selectedFilters.forEach((filter) => {
       switch (filter.condition) {
         case '>':
-          bools.push(linha[filter.column] >= filter.value);
+          bools.push(Number(linha[filter.column]) >= Number(filter.value));
           break;
         case '<':
-          bools.push(linha[filter.column] <= filter.value);
+          bools.push(Number(linha[filter.column]) <= Number(filter.value));
           break;
         case '=':
           bools.push(linha[filter.column] == filter.value);
