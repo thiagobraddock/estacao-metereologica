@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import './style.css';
 const DATA = [
@@ -168,7 +168,7 @@ const DATA = [
     TMIN18: '22.7',
     TMAX18: '30.5',
     UMIN18: '60',
-    PMAX12: '',
+    PMAX12: '*',
   },
   {
     CAPITAL: 'SAO PAULO',
@@ -179,10 +179,10 @@ const DATA = [
   },
   {
     CAPITAL: 'TERESINA',
-    TMIN18: '',
-    TMAX18: '',
-    UMIN18: '',
-    PMAX12: '',
+    TMIN18: '*',
+    TMAX18: '*',
+    UMIN18: '*',
+    PMAX12: '*',
   },
   {
     CAPITAL: 'VITORIA',
@@ -204,10 +204,6 @@ function FiltroChuva() {
   // estado para o array de filtros
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  useEffect(() => {
-    console.log('FILTRO SELECIONADO: ', selectedFilters);
-  }, [selectedFilters]);
-
   const tratarDados = (linha) => {
     const bools = [];
     selectedFilters.forEach((filter) => {
@@ -219,7 +215,7 @@ function FiltroChuva() {
           bools.push(Number(linha[filter.column]) <= Number(filter.value));
           break;
         case '=':
-          bools.push(linha[filter.column] == filter.value);
+          bools.push(linha[filter.column] === filter.value.toUpperCase());
           break;
         default:
           return true;
