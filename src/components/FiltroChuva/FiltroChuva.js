@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import './style.css';
+// api usada https://apitempo.inmet.gov.br/condicao/capitais/2022-04-22
 const DATA = [
   {
     CAPITAL: 'ARACAJU',
