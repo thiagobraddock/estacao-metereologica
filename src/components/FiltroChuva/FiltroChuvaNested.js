@@ -194,15 +194,15 @@ const DATA = [
   },
 ];
 
-function filtersComp(filters) {
+/* function filtersComp(selectedFilters) {
   return (e, i) => {
-    if (filters[i].condition === '>') {
-      return Number(e[filters[i].column]) > Number(filters[i].value);
-    } if (filters[i].condition === '=') {
-      return Number(e[filters[i].column]) === Number(filters[i].value);
-    } return Number(e[filters[i].column]) < Number(filters[i].value);
+    if (selectedFilters[i].condition === '>') {
+      return Number(e[selectedFilters[i].column]) > Number(selectedFilters[i].value);
+    } if (selectedFilters[i].condition === '=') {
+      return Number(e[selectedFilters[i].column]) === Number(selectedFilters[i].value);
+    } return Number(e[selectedFilters[i].column]) < Number(selectedFilters[i].value);
   };
-}
+} */
 
 function FiltroChuvaNested() {
   // estado generico para os inputs
@@ -217,13 +217,21 @@ function FiltroChuvaNested() {
 
   // estado para o array de filtros
 
-  const [filters, setFilters] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
   
-  const getFilter = filtersComp(filters);
+  /* const getFilter = filtersComp(selectedFilters); */
+
+  const treatCondition = (e, i) => {
+    if (selectedFilters[i].condition === '>') {
+      return Number(e[selectedFilters[i].column]) > Number(selectedFilters[i].value);
+    } if (selectedFilters[i].condition === '=') {
+      return Number(e[selectedFilters[i].column]) === Number(selectedFilters[i].value);
+    } return Number(e[selectedFilters[i].column]) < Number(selectedFilters[i].value);
+}
 
   const tratarOpcoes = (opcao) =>
-    !filters.find((filtro) => opcao === filtro.column);
+    !selectedFilters.find((filtro) => opcao === filtro.column);
 
   return (
     <div>
@@ -270,7 +278,7 @@ function FiltroChuvaNested() {
         />
         <button
           onClick={() => {
-            setFilters([...filters, selected]);
+            setSelectedFilters([...selectedFilters, selected]);
             setSelected({
               column: '',
               condition: '',
@@ -282,7 +290,7 @@ function FiltroChuvaNested() {
         </button>
         <button
           onClick={() => {
-            setFilters([]);
+            setSelectedFilters([]);
             setSelected({
               column: '',
               condition: '',
@@ -293,15 +301,15 @@ function FiltroChuvaNested() {
           LIMPAR
         </button>
       </header>
-      {filters
+      {selectedFilters
       .map((filter, index) => (
-        <div className="filters" key={index}>
+        <div className="selectedFilters" key={index}>
           <button
             className="limpar"
             onClick={() => {
-              const cloneArray = [...filters];
+              const cloneArray = [...selectedFilters];
               cloneArray.splice(index, 1);
-              setFilters(cloneArray);
+              setSelectedFilters(cloneArray);
             }}
           >
             <BsFillTrashFill />
@@ -322,12 +330,11 @@ function FiltroChuvaNested() {
         <tbody>
           {DATA
           .filter((planet) => planet.CAPITAL.toLowerCase().includes(cityInput.toLowerCase()))
-          .filter((e) => (filters.length > 0 ? (getFilter(e, 0)) : e))
-          .filter((e) => (filters.length > 1 ? (getFilter(e, 1)) : e))
-          .filter((e) => (filters.length > 2 ? (getFilter(e, 2)) : e))
-          .filter((e) => (filters.length > 1 + 2 ? (getFilter(e, 1 + 2)) : e))
-          .filter((e) => (filters.length > 2 + 2 ? (getFilter(e, 2 + 2)) : e))
-          /* .filter(tratarDados) */
+          .filter((e) => (selectedFilters.length > 0 ? (treatCondition(e, 0)) : e))
+          .filter((e) => (selectedFilters.length > 1 ? (treatCondition(e, 1)) : e))
+          .filter((e) => (selectedFilters.length > 2 ? (treatCondition(e, 2)) : e))
+          .filter((e) => (selectedFilters.length > 3 ? (treatCondition(e, 3)) : e))
+          .filter((e) => (selectedFilters.length > 4 ? (treatCondition(e, 4)) : e))
           .map((dados) => (
             <tr key={dados.CAPITAL}>
               <td>{dados.CAPITAL}</td>
