@@ -201,6 +201,7 @@ function FiltroChuva() {
     condition: '',
     value: '',
   });
+  const [nameInput, setNameInput] = useState(''); // nome do input
 
   // estado para o array de filtros
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -236,7 +237,7 @@ function FiltroChuva() {
           onChange={(e) => setSelected({ ...selected, column: e.target.value })}
         >
           <option value="">Selecione uma opção</option>
-          {['CAPITAL', 'PMAX12', 'TMIN18']
+          {[ 'PMAX12', 'TMIN18','TMAX18']
             .filter(tratarOpcoes)
             .map((column) => (
               <option value={column} key={column}>
@@ -255,13 +256,21 @@ function FiltroChuva() {
           <option value="<">MENOR DO QUE </option>
           <option value="=">IGUAL </option>
         </select>
-
         <input
+          placeholder='Digite o valor'
           type="text"
           id=""
-          name="id"
+          name="filterValue"
           value={selected.value}
           onChange={(e) => setSelected({ ...selected, value: e.target.value })}
+        />
+        <input
+        placeholder='Filtro por cidade'
+          type="text"
+          id=""
+          name="cityName"
+          value={nameInput}
+          onChange={ (e) => { setNameInput(e.currentTarget.value); } }
         />
         <button
           onClick={() => {
@@ -288,7 +297,8 @@ function FiltroChuva() {
           LIMPAR
         </button>
       </header>
-      {selectedFilters.map((filter, index) => (
+      {selectedFilters
+      .map((filter, index) => (
         <div className="filters" key={index}>
           <button
             className="limpar"
@@ -314,7 +324,9 @@ function FiltroChuva() {
           </tr>
         </thead>
         <tbody>
-          {DATA.filter(tratarDados).map((dados) => (
+          {DATA
+          .filter((planet) => planet.CAPITAL.toLowerCase().includes(nameInput.toLowerCase()))
+          .filter(tratarDados).map((dados) => (
             <tr key={dados.CAPITAL}>
               <td>{dados.CAPITAL}</td>
               <td>{dados.TMIN18}</td>

@@ -13,6 +13,9 @@ function HeaderInfo() {
       <p>
         <span>TMIN18</span> | TEMPERATURA MÍNIMA HOJE
       </p>
+      <p>
+        <span>TMAX18</span> | TEMPERATURA MÁXIMA HOJE
+      </p>
     </div>
   );
 }
