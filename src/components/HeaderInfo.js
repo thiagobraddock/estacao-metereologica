@@ -5,9 +5,6 @@ function HeaderInfo() {
     <div className="header-info">
       <h2>COLUNAS</h2>
       <p>
-        <span>CAPITAL</span> | ESTADO
-      </p>
-      <p>
         <span>PMAX12</span> | mm CHUVAS HOJE
       </p>
       <p>
