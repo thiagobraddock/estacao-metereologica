@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/thiagobraddock/estacao-metereologica/static/css/main.09a41a36.css",
-    "main.js": "/thiagobraddock/estacao-metereologica/static/js/main.3ffe4b19.js",
-    "index.html": "/thiagobraddock/estacao-metereologica/index.html",
-    "main.09a41a36.css.map": "/thiagobraddock/estacao-metereologica/static/css/main.09a41a36.css.map",
-    "main.3ffe4b19.js.map": "/thiagobraddock/estacao-metereologica/static/js/main.3ffe4b19.js.map"
+    "main.css": "/estacao-metereologica/static/css/main.09a41a36.css",
+    "main.js": "/estacao-metereologica/static/js/main.3ffe4b19.js",
+    "index.html": "/estacao-metereologica/index.html",
+    "main.09a41a36.css.map": "/estacao-metereologica/static/css/main.09a41a36.css.map",
+    "main.3ffe4b19.js.map": "/estacao-metereologica/static/js/main.3ffe4b19.js.map"
   },
   "entrypoints": [
     "static/css/main.09a41a36.css",
