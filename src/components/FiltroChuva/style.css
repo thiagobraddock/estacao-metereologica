@@ -1,5 +1,16 @@
+:root {
+  --white: #fff;
+  --gray: #f6f6f6;
+  --green: #3bba9c;
+  --dark: #2e3047;
+}
+
+input,
+select {
+  padding: 8px;
+}
 header {
-  background-color: #363636;
+  background-color: var(--dark);
   padding: 8px;
   margin-bottom: 8px;
 }
@@ -15,11 +26,11 @@ table {
   border: 1px solid black;
   text-align: center;
   vertical-align: middle;
-  width: 60%;
+  width: 100%;
 }
 
 thead {
-  background-color: #333;
+  background-color: var(--dark);
   color: white;
   font-size: 0.875rem;
   text-transform: uppercase;
@@ -32,7 +43,7 @@ td {
   padding: 8px;
 }
 
-tbody td {
+tbody td:first-child {
   text-align: left;
 }
 
@@ -43,7 +54,7 @@ tfoot th {
 /* zebra striping */
 
 tbody tr:nth-child(odd) {
-  background-color: #a6ebe4;
+  background-color: var(--gray);
 }
 
 tbody tr:nth-child(even) {
@@ -57,31 +68,58 @@ tbody tr td:first-child {
 }
 
 tbody tr:hover {
-  background-color: rgb(119, 146, 233) !important;
+  background-color: var(--green) !important;
 }
 
-/* filtros aplicados */
+.filter-city input {
+  width: 100%;
+  margin-bottom: 12px;
+}
 
-.filters {
-  padding: 8px;
-  border: 1px solid rgb(99, 198, 165);
-  background-color: rgb(156, 252, 220);
-  border-radius: 4px;
-  margin-top: 4px;
-  margin-bottom: 8px;
-  display: flex;
-  width: 40%;
+.selectedFilters {
+  background-color: var(--gray);
+  margin-bottom: 12px;
+  padding: 4px;
+  display: inline-flex;
   align-items: center;
+  margin-right: 12px;
+  flex-wrap: wrap;
+  font-size: 0.9em;
 }
 
-.filters button {
-  padding: 0;
-  margin: 0 4px 0 0;
-  width: 20px;
-  height: 20px;
+.selectedFilters button {
+  color: red;
+  background-color: rgb(244, 217, 217);
+  font-family: 'arial black';
+  border: none;
+  margin-right: 8px;
+  border-radius: 2px;
 }
 
-.filters button:hover {
-  color: rgb(210, 80, 80);
+.buttons button {
+  margin-top: 12px;
+  margin-right: 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
   cursor: pointer;
+}
+
+.add {
+  background-color: var(--green);
+  color: white;
+  font-weight: bold;
+}
+
+.add:active {
+  box-shadow: 0px 1px 2px 2px var(--green);
+}
+
+.clear {
+  background-color: tomato;
+  color: white;
+  font-weight: bold;
+}
+.clear:active {
+  box-shadow: 0px 1px 2px 2px tomato;
 }
