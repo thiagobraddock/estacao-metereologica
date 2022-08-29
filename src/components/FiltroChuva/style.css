@@ -9,10 +9,11 @@ input,
 select {
   padding: 8px;
 }
-header {
+.filter-box {
   background-color: var(--dark);
   padding: 8px;
   margin-bottom: 8px;
+  color: #FFF;
 }
 /* table */
 thead th,
