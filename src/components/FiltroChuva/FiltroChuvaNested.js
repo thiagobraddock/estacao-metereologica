@@ -73,8 +73,6 @@ function FiltroChuvaNested() {
       if ( direction === 'ASC' ) {
         return (extractNumber(a[column]) - extractNumber(b[column]));
       } else if ( direction === 'DESC' ) {
-        console.log(extractNumber(a[column]));
-        console.log(extractNumber(b[column]));
         return (extractNumber(a[column]) - extractNumber(b[column])) * -1;
       }  
     }
